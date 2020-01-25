@@ -1,0 +1,15 @@
+.recipe-results {
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr 0.5fr 0.5fr;
+  margin: 2% 20%;
+}
+a {
+  text-decoration: none;
+}
+.recipe {
+  padding: 4%;
+}
+
+img {
+  width: 100%;
+}

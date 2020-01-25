@@ -1,5 +1,6 @@
 header {
-  display: flex;
-  justify-content: space-evenly;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.5fr 0.5fr;
+  margin: 0 10%;
 }
