@@ -10,7 +10,7 @@ const RecipeResults = ({ recipes, setSelectedRecipe }) => {
     <div className="recipe-results">
       {recipes.map(item => (
         <div key={item.idMeal} className="recipe">
-          <img src={item.strMealThumb} />
+          <img src={item.strMealThumb} alt={item.strMeal} />
           <Link to={`/${item.strMeal}`}>
             <p onClick={() => setSelectedRecipe(item)}>{item.strMeal}</p>
           </Link>

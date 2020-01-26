@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Link, Route } from 'react-router-dom';
 import RecipeSearch from './components/RecipeSearch/RecipeSearch';
 import './App.css';
 import RecipeResults from './components/RecipeResults/RecipeResults';
@@ -12,7 +12,7 @@ function App() {
     endpoint: '/search.php?s='
   };
   // const [searchPlaceholder, setSearchPlaceHolder] = useState();
-  const [recipe, setRecipe] = useState([]);
+  const [recipe, setRecipe] = useState('');
   const [recipes, setRecipes] = useState([]);
   const [searchString, setSearchString] = useState('');
 
@@ -22,13 +22,13 @@ function App() {
 
   function getRecipes(searchString) {
     //create a variable for url using searchParams object
-    const url = `${searchParams.api}1${searchParams.endpoint}${searchString}`;
+    const url = `${searchParams.api}${searchParams.key}${searchParams.endpoint}${searchString}`;
     fetch(url)
       .then(response => response.json())
       .then(response => {
         setRecipes(response.meals);
-        // setSearchString('');
       });
+    // setSearchString('');
   }
   function handleChange(evt) {
     //sets the searchString to the user input value
@@ -42,20 +42,19 @@ function App() {
   function setSelectedRecipe(meal) {
     setRecipe(meal);
   }
-  // console.log(recipe);
 
   return (
     <div className="App">
       <header>
         <h1>Recipe Finder</h1>
         <RecipeSearch handleChange={handleChange} handleSubmit={handleSubmit} />
+        <nav>
+          <Link to="/">
+            <p>Results</p>
+          </Link>
+        </nav>
       </header>
       <main>
-        <RecipeResults
-          recipes={recipes}
-          recipe={recipe}
-          setSelectedRecipe={setSelectedRecipe}
-        />
         <Switch>
           <Route
             exact
@@ -70,8 +69,15 @@ function App() {
           <Route
             exact
             path="/:recipe"
-            render={() => {
-              return <RecipeInfo recipes={recipes} recipe={recipe} />;
+            render={routerProps => {
+              console.log(routerProps);
+              return (
+                <RecipeInfo
+                  {...routerProps}
+                  recipes={recipes}
+                  recipe={recipe}
+                />
+              );
             }}
           />
         </Switch>

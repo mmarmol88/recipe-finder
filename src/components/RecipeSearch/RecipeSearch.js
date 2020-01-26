@@ -1,21 +1,21 @@
 import React from 'react';
 import './RecipeSearch.css';
 
-function RecipeSearch(props) {
+const RecipeSearch = ({ handleChange, searchString, handleSubmit }) => {
   return (
     <div>
-      <form className="search-form" onSubmit={props.handleSubmit}>
+      <form className="search-form" onSubmit={handleSubmit}>
         <input
           type="text"
           id="searchString"
           placeholder="search for recipe by name"
-          onChange={props.handleChange}
-          value={props.searchString}
+          onChange={handleChange}
+          value={searchString}
         />
         <button type="submit">Search</button>
       </form>
     </div>
   );
-}
+};
 
 export default RecipeSearch;
