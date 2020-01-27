@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Switch, Link, Route } from 'react-router-dom';
+import { withRouter, Route } from 'react-router-dom';
 import RecipeSearch from './components/RecipeSearch/RecipeSearch';
 import './App.css';
 import RecipeResults from './components/RecipeResults/RecipeResults';
 import RecipeInfo from './components/RecipeInfo/RecipeInfo';
 
-function App() {
+function App(props) {
   const searchOptions = {
     key: process.env.REACT_APP_RECIPE_KEY,
     api: 'https://www.themealdb.com/api/json/v1/',
@@ -25,10 +25,18 @@ function App() {
     fetch(url)
       .then(response => response.json())
       .then(response => {
-        console.log(response);
-        setRecipes(response.meals);
+        if (!response.meals) {
+          setRecipes([]);
+        } else {
+          setRecipes(response.meals);
+        }
         setSearchString('');
-      });
+      })
+      //As per Jen this helps set the path for recipe results on search
+      .then(() => props.history.push('/recipes'))
+      .catch
+      //add an error to display error
+      ();
   }
   function handleChange(evt) {
     //sets the searchString to the user input value
@@ -44,36 +52,28 @@ function App() {
       <header>
         <h1>Recipe Finder</h1>
         <RecipeSearch handleChange={handleChange} handleSubmit={handleSubmit} />
-        <nav>
-          <Link to="/recipes">
-            <p>Results</p>
-          </Link>
-        </nav>
       </header>
       <main>
-        <Switch>
-          <Route
-            exact
-            path="/recipes"
-            render={() => <RecipeResults recipes={recipes} />}
-          />
-          <Route
-            exact
-            path="/recipes/:recipe"
-            render={routerProps => {
-              console.log(routerProps);
-              return (
-                <RecipeInfo
-                  recipes={recipes}
-                  recipe={routerProps.match.params.recipe}
-                />
-              );
-            }}
-          />
-        </Switch>
+        <Route
+          exact
+          path="/recipes"
+          render={() => <RecipeResults recipes={recipes} />}
+        />
+        <Route
+          exact
+          path="/recipes/:recipe"
+          render={routerProps => {
+            //Jen suggested use the find method outside of the component to avoid console errors
+            const currentRecipe = recipes.find(
+              item => item.idMeal === routerProps.match.params.recipe
+            );
+            //pass the variable that I used the find method for
+            return <RecipeInfo currentRecipe={currentRecipe} />;
+          }}
+        />
       </main>
     </div>
   );
 }
-
-export default App;
+//method that takes in app
+export default withRouter(App);

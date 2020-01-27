@@ -3,8 +3,7 @@ import './RecipeResults.css';
 import { Link } from 'react-router-dom';
 
 const RecipeResults = ({ recipes }) => {
-  console.log(recipes);
-
+  // console.log(recipes);
   if (!recipes.length) {
     return <p>No recipes found</p>;
   }

@@ -1,5 +1,6 @@
 import React from 'react';
 import './RecipeSearch.css';
+import { Link } from 'react-router-dom';
 
 const RecipeSearch = ({ handleChange, searchString, handleSubmit }) => {
   return (
