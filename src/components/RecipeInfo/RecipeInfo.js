@@ -1,19 +1,25 @@
 import React from 'react';
+import './RecipeInfo.css';
 
-const RecipeInfo = ({ recipe }) => {
-  console.log(recipe);
-  if (!recipe.length) {
-    return <p>Recipe Info not available</p>;
-  }
+const RecipeInfo = ({ recipes, recipe }) => {
+  const currentRecipe = recipes.find(item => item.idMeal === recipe);
+  console.log(currentRecipe);
 
   return (
-    <div>
-      <p>recipe Information</p>
-      {recipe.map(item => (
-        <div key={item.idMeal}>
-          <img src={item.strMeal} alt={item.strMeal} />
-        </div>
-      ))}
+    <div className="display-recipe" key={currentRecipe.idMeal}>
+      <section className="recipe-image">
+        <img src={currentRecipe.strMealThumb} alt={currentRecipe.strMeal} />
+      </section>
+      <section className="instructions">
+        <h3>{currentRecipe.strMeal}</h3>
+        <h4>Instructions</h4>
+        <p>{currentRecipe.strInstructions}</p>
+        <button>
+          <a target="_blank" href={currentRecipe.strYoutube}>
+            Watch Video
+          </a>
+        </button>
+      </section>
     </div>
   );
 };

@@ -8,11 +8,14 @@ const RecipeSearch = ({ handleChange, searchString, handleSubmit }) => {
         <input
           type="text"
           id="searchString"
-          placeholder="search for recipe by name"
+          placeholder="search for recipe by keyword"
           onChange={handleChange}
           value={searchString}
         />
-        <button type="submit">Search</button>
+
+        <button className="search-button" type="submit">
+          Search
+        </button>
       </form>
     </div>
   );

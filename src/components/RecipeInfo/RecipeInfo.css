@@ -1,0 +1,16 @@
+.display-recipe {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  margin: 2% 15%;
+}
+.recipe-image {
+  grid-column: 1;
+  grid-row: 1;
+  padding: 2%;
+}
+.instructions {
+  grid-column: 2 / span 2;
+  grid-row: 1 / span 2;
+  padding: 2%;
+}

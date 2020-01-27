@@ -6,13 +6,12 @@ import RecipeResults from './components/RecipeResults/RecipeResults';
 import RecipeInfo from './components/RecipeInfo/RecipeInfo';
 
 function App() {
-  const searchParams = {
+  const searchOptions = {
     key: process.env.REACT_APP_RECIPE_KEY,
     api: 'https://www.themealdb.com/api/json/v1/',
     endpoint: '/search.php?s='
   };
-  // const [searchPlaceholder, setSearchPlaceHolder] = useState();
-  const [recipe, setRecipe] = useState('');
+
   const [recipes, setRecipes] = useState([]);
   const [searchString, setSearchString] = useState('');
 
@@ -22,13 +21,14 @@ function App() {
 
   function getRecipes(searchString) {
     //create a variable for url using searchParams object
-    const url = `${searchParams.api}${searchParams.key}${searchParams.endpoint}${searchString}`;
+    const url = `${searchOptions.api}${searchOptions.key}${searchOptions.endpoint}${searchString}`;
     fetch(url)
       .then(response => response.json())
       .then(response => {
+        console.log(response);
         setRecipes(response.meals);
+        setSearchString('');
       });
-    // setSearchString('');
   }
   function handleChange(evt) {
     //sets the searchString to the user input value
@@ -39,17 +39,13 @@ function App() {
     getRecipes(searchString);
   }
 
-  function setSelectedRecipe(meal) {
-    setRecipe(meal);
-  }
-
   return (
     <div className="App">
       <header>
         <h1>Recipe Finder</h1>
         <RecipeSearch handleChange={handleChange} handleSubmit={handleSubmit} />
         <nav>
-          <Link to="/">
+          <Link to="/recipes">
             <p>Results</p>
           </Link>
         </nav>
@@ -58,24 +54,18 @@ function App() {
         <Switch>
           <Route
             exact
-            path="/"
-            render={() => (
-              <RecipeResults
-                recipes={recipes}
-                setSelectedRecipe={setSelectedRecipe}
-              />
-            )}
+            path="/recipes"
+            render={() => <RecipeResults recipes={recipes} />}
           />
           <Route
             exact
-            path="/:recipe"
+            path="/recipes/:recipe"
             render={routerProps => {
               console.log(routerProps);
               return (
                 <RecipeInfo
-                  {...routerProps}
                   recipes={recipes}
-                  recipe={recipe}
+                  recipe={routerProps.match.params.recipe}
                 />
               );
             }}
