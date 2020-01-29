@@ -1,10 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700,700i,800|Raleway:500,800&display=swap');
+
+.App {
+  margin: 0 auto;
+}
 header {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 0.3fr 0.2fr;
   margin: 0 auto;
-  text-align: center;
+  text-align: left;
   border-bottom: double gray;
+}
+.logo {
+  font-family: 'Playfair Display', serif;
+  padding-left: 4%;
+}
+
+h2,
+h3,
+h4,
+p,
+li {
+  font-family: 'Raleway', sans-serif;
+  font-size: 4vh;
+}
+h2,
+h3 {
+  color: rgb(21, 80, 29);
+}
+h3,
+p,
+li {
+  font-weight: lighter;
+}
+h4.h2 {
+  font-weight: medium;
 }
 
 img {
@@ -19,8 +49,5 @@ img {
     flex-direction: column;
     display: flex;
     justify-content: space-between;
-  }
-  .display-recipe {
-    margin: auto;
   }
 }

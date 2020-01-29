@@ -5,22 +5,27 @@ import { Link } from 'react-router-dom';
 const RecipeResults = ({ recipes }) => {
   // console.log(recipes);
   if (!recipes.length) {
-    return <p>No recipes found</p>;
+    return (
+      <h2 className="error">
+        Hello food lover! There are no recipes related to your search. Try
+        something else.
+      </h2>
+    );
   }
   return (
     <>
       <div>
-        <p className="welcome">
+        <h3 className="welcome">
           Welcome to recipe Finder! Have a recipe in mind you would like to try?
           Click one below or use search.
-        </p>
+        </h3>
       </div>
       <div className="recipe-results">
         {recipes.map(item => (
           <div key={item.idMeal} className="recipe">
             <img src={item.strMealThumb} alt={item.strMeal} />
             <Link to={`/recipes/${item.idMeal}`}>
-              <p>{item.strMeal}</p>
+              <h3>{item.strMeal}</h3>
             </Link>
           </div>
         ))}

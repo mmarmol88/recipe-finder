@@ -4,6 +4,7 @@ import VideoPlayer from '../VideoPlayer/VideoPlayer';
 
 const RecipeInfo = ({ currentRecipe }) => {
   if (!currentRecipe) {
+    //Conditionally renders the component as to avoid console errors
     return null;
   }
   const ingredients = [];
@@ -13,36 +14,34 @@ const RecipeInfo = ({ currentRecipe }) => {
     while (currentRecipe['strIngredient' + i]) {
       const name = currentRecipe['strIngredient' + i];
       const measurement = currentRecipe['strMeasure' + i];
+      //push the value of name and measurement to ingredients array in order to map through for ingredient and measurement values
       ingredients.push(name + ' : ' + measurement);
       i++;
     }
     return ingredients;
   }
   getRecipeIngredients();
-  const youTubeVideo = currentRecipe.strYoutube.split('=');
 
-  console.log(youTubeVideo);
+  // Isolate video Id from strYoutubbe property in order to use react-youtube
+  const youTubeVideo = currentRecipe.strYoutube.split('=');
 
   return (
     <div className="display-recipe" key={currentRecipe.idMeal}>
       <section className="recipe-image">
         <img src={currentRecipe.strMealThumb} alt={currentRecipe.strMeal} />
-        {/* <button>
-          <a target="_blank" href={currentRecipe.strYoutube}>
-            Watch Video
-          </a>
-        </button> */}
       </section>
-
-      <section className="instructions">
-        <h1>{currentRecipe.strMeal}</h1>
-        <h3>Ingredients</h3>
+      <section className="ingredients">
+        <h2>{currentRecipe.strMeal}</h2>
+        <h4>Ingredients</h4>
         <ul className="ingredient-list">
+          {/* in order to map through the ingredients I must return a key, in this case using index to avoid console errors */}
           {ingredients.map((item, index) => (
             <li key={index}>{item}</li>
           ))}
         </ul>
-        <h3>Instructions</h3>
+      </section>
+      <section className="instructions">
+        <h4>Instructions</h4>
         <p>{currentRecipe.strInstructions}</p>
       </section>
 
@@ -54,20 +53,3 @@ const RecipeInfo = ({ currentRecipe }) => {
 };
 
 export default RecipeInfo;
-
-// const recipeArr = [];
-
-// for (let [index, [key, value]] of Object.entries(currentRecipe).entries()) {
-//   if (key.substring(0, 13) === 'strIngredient' && value) {
-//     //substring to keep track of  the
-//     const measurement = 'strMeasure' + key.substring(13, key.length);
-//     const measureValue = `${currentRecipe[measurement]}`;
-//     const ingredient =
-//       measureValue !== ' ' || typeof measureValue !== 'undefined'
-//         ? `${value} : ${measureValue}`
-//         : value;
-//     //add the ingredient to recipeArr
-//     recipeArr.push(ingredient);
-//     // console.log(recipeArr);
-//   }
-// }

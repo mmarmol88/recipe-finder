@@ -1,8 +1,7 @@
 .recipe-results {
   display: grid;
   grid-template-columns: 0.5fr 0.5fr 0.5fr;
-  margin: 2% 10%;
-  border-color: blueviolet;
+  margin: 2% 20%;
 }
 a {
   text-decoration: none;
@@ -12,7 +11,9 @@ a {
   text-align: center;
   margin: 3%;
 }
-
+.error {
+  text-align: center;
+}
 .welcome {
   text-align: center;
   margin: 0 auto;

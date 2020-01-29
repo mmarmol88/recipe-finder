@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { withRouter, Link, Route } from 'react-router-dom';
-
 import RecipeSearch from './components/RecipeSearch/RecipeSearch';
 import './App.css';
 import RecipeResults from './components/RecipeResults/RecipeResults';
@@ -8,11 +7,12 @@ import RecipeInfo from './components/RecipeInfo/RecipeInfo';
 
 function App(props) {
   const searchOptions = {
+    //In order to use the key info in the env folder, must have process.env before key name
     key: process.env.REACT_APP_RECIPE_KEY,
     api: 'https://www.themealdb.com/api/json/v1/',
     endpoint: '/search.php?s='
   };
-
+  //Initiate recipes to an empty array
   const [recipes, setRecipes] = useState([]);
   const [searchString, setSearchString] = useState('');
 
@@ -52,7 +52,7 @@ function App(props) {
     <div className="App">
       <header>
         <Link to="/recipes">
-          <h1>Recipe Finder</h1>
+          <h1 className="logo">Recipe Finder</h1>
         </Link>
         <RecipeSearch handleChange={handleChange} handleSubmit={handleSubmit} />
       </header>
@@ -70,7 +70,6 @@ function App(props) {
             const currentRecipe = recipes.find(
               item => item.idMeal === routerProps.match.params.recipe
             );
-            console.log(currentRecipe);
 
             //then pass the variable in the component render method
             return <RecipeInfo currentRecipe={currentRecipe} />;
