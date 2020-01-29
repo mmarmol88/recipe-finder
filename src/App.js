@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { withRouter, Route } from 'react-router-dom';
+import { withRouter, Link, Route } from 'react-router-dom';
 import RecipeSearch from './components/RecipeSearch/RecipeSearch';
 import './App.css';
 import RecipeResults from './components/RecipeResults/RecipeResults';
 import RecipeInfo from './components/RecipeInfo/RecipeInfo';
+import Welcome from './components/Welcome/Welcome';
 
 function App(props) {
   const searchOptions = {
@@ -50,10 +51,14 @@ function App(props) {
   return (
     <div className="App">
       <header>
-        <h1>Recipe Finder</h1>
+        <Link to="/">
+          <h1>Recipe Finder</h1>
+        </Link>
         <RecipeSearch handleChange={handleChange} handleSubmit={handleSubmit} />
       </header>
       <main>
+        <Route exact path="/" component={Welcome} />
+
         <Route
           exact
           path="/recipes"
@@ -63,11 +68,13 @@ function App(props) {
           exact
           path="/recipes/:recipe"
           render={routerProps => {
-            //Jen suggested use the find method outside of the component to avoid console errors
+            //Jen suggested I use the find method outside of the component to avoid console errors
             const currentRecipe = recipes.find(
               item => item.idMeal === routerProps.match.params.recipe
             );
-            //pass the variable that I used the find method for
+            console.log(currentRecipe);
+
+            //then pass the variable in the component render method
             return <RecipeInfo currentRecipe={currentRecipe} />;
           }}
         />

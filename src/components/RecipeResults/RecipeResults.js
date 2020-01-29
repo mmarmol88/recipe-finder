@@ -8,16 +8,22 @@ const RecipeResults = ({ recipes }) => {
     return <p>No recipes found</p>;
   }
   return (
-    <div className="recipe-results">
-      {recipes.map(item => (
-        <div key={item.idMeal} className="recipe">
-          <img src={item.strMealThumb} alt={item.strMeal} />
-          <Link to={`/recipes/${item.idMeal}`}>
-            <p>{item.strMeal}</p>
-          </Link>
-        </div>
-      ))}
-    </div>
+    <>
+      <p>
+        Welcome to recipe Finder. Have a recipe in mind you would like to try?
+        Click one below or use search.
+      </p>
+      <div className="recipe-results">
+        {recipes.map(item => (
+          <div key={item.idMeal} className="recipe">
+            <img src={item.strMealThumb} alt={item.strMeal} />
+            <Link to={`/recipes/${item.idMeal}`}>
+              <p>{item.strMeal}</p>
+            </Link>
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 
