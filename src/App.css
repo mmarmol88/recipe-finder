@@ -2,7 +2,25 @@ header {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 0.3fr 0.2fr;
-  margin: 0 10%;
+  margin: 0 auto;
   text-align: center;
   border-bottom: double gray;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  border-radius: 10%;
+}
+
+@media (max-width: 600px) {
+  header {
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+  }
+  .display-recipe {
+    margin: auto;
+  }
 }

@@ -9,10 +9,12 @@ const RecipeResults = ({ recipes }) => {
   }
   return (
     <>
-      <p>
-        Welcome to recipe Finder. Have a recipe in mind you would like to try?
-        Click one below or use search.
-      </p>
+      <div>
+        <p className="welcome">
+          Welcome to recipe Finder! Have a recipe in mind you would like to try?
+          Click one below or use search.
+        </p>
+      </div>
       <div className="recipe-results">
         {recipes.map(item => (
           <div key={item.idMeal} className="recipe">

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { withRouter, Link, Route } from 'react-router-dom';
+
 import RecipeSearch from './components/RecipeSearch/RecipeSearch';
 import './App.css';
 import RecipeResults from './components/RecipeResults/RecipeResults';
 import RecipeInfo from './components/RecipeInfo/RecipeInfo';
-import Welcome from './components/Welcome/Welcome';
 
 function App(props) {
   const searchOptions = {
@@ -51,14 +51,12 @@ function App(props) {
   return (
     <div className="App">
       <header>
-        <Link to="/">
+        <Link to="/recipes">
           <h1>Recipe Finder</h1>
         </Link>
         <RecipeSearch handleChange={handleChange} handleSubmit={handleSubmit} />
       </header>
       <main>
-        <Route exact path="/" component={Welcome} />
-
         <Route
           exact
           path="/recipes"

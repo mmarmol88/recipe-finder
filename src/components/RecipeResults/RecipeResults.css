@@ -1,15 +1,19 @@
 .recipe-results {
   display: grid;
-  grid-template-columns: 0.5fr 0.5fr 0.5fr 0.5fr;
-  margin: 2% 15%;
+  grid-template-columns: 0.5fr 0.5fr 0.5fr;
+  margin: 2% 10%;
+  border-color: blueviolet;
 }
 a {
   text-decoration: none;
+  color: black;
 }
 .recipe {
-  padding: 4%;
+  text-align: center;
+  margin: 3%;
 }
 
-img {
-  width: 100%;
+.welcome {
+  text-align: center;
+  margin: 0 auto;
 }
