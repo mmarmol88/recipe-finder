@@ -30,8 +30,28 @@ ul {
 li {
   list-style: none;
 }
-.video-player {
+
+.responsive-video {
+  display: block;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  width: 100%;
   grid-row: 3;
   grid-column: 1 / span 2;
   margin: auto;
+}
+.responsive-video::before {
+  content: '';
+  display: block;
+  padding-top: 56.25%;
+}
+.responsive-video > iframe {
+  border: 0;
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }

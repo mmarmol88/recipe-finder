@@ -1,6 +1,5 @@
 import React from 'react';
 import './RecipeInfo.css';
-import VideoPlayer from '../VideoPlayer/VideoPlayer';
 
 const RecipeInfo = ({ currentRecipe }) => {
   if (!currentRecipe) {
@@ -45,9 +44,14 @@ const RecipeInfo = ({ currentRecipe }) => {
         <p>{currentRecipe.strInstructions}</p>
       </section>
 
-      <section className="video-player">
-        <VideoPlayer youTubeVideo={youTubeVideo} />
-      </section>
+      <div className="responsive-video">
+        <iframe
+          src={`https://www.youtube.com/embed/${youTubeVideo[1]}`}
+          allow="accelerometer; autoplay; encrypted-media; gyroscope"
+          allowFullScreen
+          title={currentRecipe.strMeal}
+        />
+      </div>
     </div>
   );
 };
