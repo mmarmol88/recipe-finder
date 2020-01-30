@@ -11,7 +11,11 @@ const VideoPlayer = ({ youTubeVideo }) => {
     height: '390',
     width: '640',
     playerVars: {
-      autoplay: 1
+      autoplay: 0,
+      host: 'https://recipe-finder-app20.herokuapp.com/',
+      // origin: 'https://youtube.com',
+      enablejsapi: 1,
+      passive: true
     }
   };
   return (

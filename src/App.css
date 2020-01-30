@@ -12,8 +12,10 @@ header {
   border-bottom: double gray;
 }
 .logo {
-  font-family: 'Playfair Display', serif;
+  /* font-family: 'Playfair Display', serif; */
+  font-family: 'Raleway', sans-serif;
   padding-left: 4%;
+  text-transform: uppercase;
 }
 
 h2,

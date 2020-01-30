@@ -1,4 +1,4 @@
-### Recipe Finder
+## Recipe Finder
 
 An app for food lovers of all ages. If you like to experiment with your taste buds than this is the right app for you.
 
@@ -13,6 +13,10 @@ This is an app that provides the user with recipes based on search functionality
 - JSX
 - React
 - Hooks
+
+* CSS
+* react-router
+* react-youTube
 
 * [The MealDB Api](https://www.themealdb.com/api.php)
 
@@ -31,4 +35,4 @@ To contribute to this project feel free to create an issue via the project's [gi
 
 #### Future Additions
 
-In the future I would like to implement search by category. As well as provide the user with the ability to store recipes for future use or share via email.
+In the future I would like to implement search by category functionality. As well as provide the user with the ability to store recipes for future use or share via email.

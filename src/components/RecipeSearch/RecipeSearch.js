@@ -10,6 +10,7 @@ const RecipeSearch = ({ handleChange, searchString, handleSubmit }) => {
           type="text"
           id="searchString"
           placeholder="search for recipe by keyword"
+          required
           onChange={handleChange}
           value={searchString}
         />
