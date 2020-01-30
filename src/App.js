@@ -35,9 +35,10 @@ function App(props) {
       })
       //As per Jen this helps set the path for recipe results on search
       .then(() => props.history.push('/recipes'))
-      .catch
-      //add an error to display error
-      ();
+      .catch(
+        //add to catch error
+        console.error
+      );
   }
   function handleChange(evt) {
     //sets the searchString to the user input value
