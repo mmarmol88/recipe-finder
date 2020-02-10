@@ -21,7 +21,7 @@ const RecipeInfo = ({ currentRecipe }) => {
   }
   getRecipeIngredients();
 
-  // Isolate video Id from strYoutubbe property in order to use react-youtube
+  // Isolate video Id from strYoutube property in order to use in src of iframe youtube
   const youTubeVideo = currentRecipe.strYoutube.split('=');
 
   return (
@@ -46,6 +46,7 @@ const RecipeInfo = ({ currentRecipe }) => {
 
       <div className="responsive-video">
         <iframe
+          //source including the video id in order to avoid rejection via , Code similar to react-youtube. Provided by Jen to try to solve console warnings I was getting via react youTube player
           src={`https://www.youtube.com/embed/${youTubeVideo[1]}`}
           allow="accelerometer; autoplay; encrypted-media; gyroscope"
           allowFullScreen
